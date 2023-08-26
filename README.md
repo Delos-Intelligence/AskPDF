@@ -25,7 +25,7 @@ uvicorn server:app --reload
 Le serveur sera accessible à l'adresse http://127.0.0.1:8000.
 
 ## Endpoints
-Upload de fichier
+### Upload
 Pour envoyer un fichier par morceaux :
 
 ```bash
@@ -48,6 +48,7 @@ Body
 }
 ```
 
+### Ask
 Pour demander quelque chose :
 
 ```json
