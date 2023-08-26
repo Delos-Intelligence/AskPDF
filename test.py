@@ -9,8 +9,7 @@ CHUNK_SIZE = 4096  # 4KB, vous pouvez ajuster cette taille selon vos besoins
 URL = 'http://localhost:8000/upload/'
 ASK_URL = 'http://localhost:8000/ask/'
 
-PATH = "/Users/pierredgr/Documents/Business/Actuels/Delos/NUKEMA/CCTP_Lot_N°05_MENUISERIES_EXTERIEURES.pdf"
-TEST_PATH = "/Users/pierredgr/Documents/Informatique/GitHub/Delos_platform/delos_platform_v2"
+PATH = "test_file" # Remplacer par un fichier test
 
 def send_chunks(file_path):
     print("Beginning sending the doc")
@@ -44,23 +43,9 @@ def send_chunks(file_path):
                 return
     print("Envoi terminé avec succès!")
 
-def multiple_tries_sending():
-    attempts = 0
-    while attempts < 5:
-        try:
-            send_chunks(PATH)
-            break
-        except Exception as e:
-            attempts += 1
-            print(f"Attempt {attempts} failed with error: {e}")
-
-        if attempts == 5:
-            print("Max attempts reached. Stopping.")
-
-
 def ask():
     question = input("Entrez votre question : ")
-    chat_buffer = ""
+    chat_buffer = ["user : what is your name ?", "system : my name is Sydney"]
     question_info = {
         "user_id" : "1345",
         "question" : question,
@@ -77,10 +62,3 @@ def ask():
             sys.stdout.flush()
 
     return
-
-def test():
-    multiple_tries_sending()
-    #time.sleep(3)
-    #ask()
-
-test()
