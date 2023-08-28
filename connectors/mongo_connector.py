@@ -12,12 +12,13 @@ DB = CLIENT.pdfcollection
 documents_collection = DB.documents
 chunks_collection = DB.chunks
 
-try:
-    print("Trying to ping MongoDB")
-    CLIENT.admin.command('ping')
-    print("Pinged your deployment. You successfully connected to MongoDB!")
-except Exception as e:
-    print(e)
+def ping_mongodb():
+    try:
+        print("Trying to ping MongoDB")
+        CLIENT.admin.command('ping')
+        print("Pinged your deployment. You successfully connected to MongoDB!")
+    except Exception as e:
+        print(e)
 
 def get_all_items(collection_name : str):
     if collection_name == "documents":

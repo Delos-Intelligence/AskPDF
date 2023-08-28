@@ -3,7 +3,6 @@ import time
 import base64
 import os
 import json
-import chardet
 import asyncio
 from fastapi import FastAPI, HTTPException, UploadFile, Form
 from fastapi.responses import StreamingResponse
@@ -15,7 +14,9 @@ from initializer import initialize_vectorbase_table
 
 app = FastAPI()
 
-LOCAL = "/Users/pierredgr/Documents/Informatique/GitHub/Delos_platform/delos_platform/local_storage"
+mongo_connector.ping_mongodb()
+
+LOCAL = "."
 FILE_PATH = LOCAL+'/received_file.pdf'
 
 VECTORBASE_TABLE = initialize_vectorbase_table()
@@ -74,4 +75,4 @@ async def ask_endpoint(request: Ask_request):
     
     vectorbase = VECTORBASE_TABLE[user_id]
     #return StreamingResponse(fake_data_streamer(), media_type='text/event-stream')
-    return StreamingResponse(llm_connector.ask_request(question, chat_buffer= "", vectorbase=vectorbase), media_type='text/event-stream')
+    return StreamingResponse(llm_connector.ask_request(question, chat_buffer= chat_buffer, vectorbase=vectorbase), media_type='text/event-stream')
