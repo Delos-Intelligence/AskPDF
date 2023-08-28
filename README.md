@@ -13,6 +13,8 @@ Clonez le dépôt et naviguez dans son répertoire, puis exécutez :
 pip install -r requirements.txt
 ```
 
+Dans le dossier connectors, ajouter le ficher *secrets_manager.py*
+
 ## Exécution locale
 
 ### Exécuter le serveur FastAPI
@@ -23,6 +25,8 @@ uvicorn server:app --reload
 ```
 
 Le serveur sera accessible à l'adresse http://127.0.0.1:8000.
+
+Assurer la bonne connection avec MongoDB => l'adresse IP doit être autorisée à se connecter. 
 
 ## Endpoints
 ### Upload
@@ -59,3 +63,20 @@ Pour demander quelque chose :
 }
 ```
 
+## Test
+
+Lancer le serveur puis executer les deux fonctions de test.py pour vous assurer du bon fonctionnement. Pour cela, renseigner un path local vers un fichier dans la ligne suivante : 
+
+```python
+PATH = "test_file" # Remplacer par un fichier test
+```
+
+Puis exécuter les fonctions
+```bash
+python send_chunks()
+```
+
+et 
+```bash
+python ask()
+```
