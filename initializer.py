@@ -9,8 +9,6 @@ FILE_PATH = LOCAL+'/received_file.pdf'
 
 VECTORBASE_TABLE = {} 
 
-
-
 def initialize_vectorbase_table():
     print("Initializing VECTORBASE_TABLE")
     global VECTORBASE_TABLE
