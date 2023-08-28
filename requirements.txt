@@ -5,3 +5,4 @@ chardet
 PyPDF2
 pymongo
 tiktoken
+uvicorn
