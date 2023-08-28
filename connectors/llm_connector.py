@@ -21,7 +21,7 @@ OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
 openai.api_key = OPENAI_API_KEY
 
-EMBEDDINGS = OpenAIEmbeddings(openai_api_key=OPENAI_SECRETS["API_KEY"])
+EMBEDDINGS = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
 
 def create_vectorbase(file_info : dict, TEMPFILE_PATH : str):
     print("Creating vectorbase for user " + file_info.user_id)
