@@ -8,7 +8,6 @@ from langchain.prompts import PromptTemplate
 from langchain.chat_models import ChatOpenAI
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 
-from connectors.secrets_manager import OPENAI_SECRETS
 from prompt_templates import SYSTEM_TEMPLATE, QUESTION_TEMPLATE
 from file_manager import read_and_split
 
