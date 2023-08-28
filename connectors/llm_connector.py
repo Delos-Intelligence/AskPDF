@@ -16,8 +16,11 @@ import openai
 import time
 import asyncio
 import sys
+import os
 
-openai.api_key = OPENAI_SECRETS["API_KEY"]
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+
+openai.api_key = OPENAI_API_KEY
 
 EMBEDDINGS = OpenAIEmbeddings(openai_api_key=OPENAI_SECRETS["API_KEY"])
 

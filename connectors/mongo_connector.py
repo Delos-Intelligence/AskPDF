@@ -4,7 +4,9 @@ from pymongo.server_api import ServerApi
 
 from .secrets_manager import MONGO_SECRETS
 
-URI = "mongodb+srv://pierredelagrandrive:"+MONGO_SECRETS["PASSWORD"]+"@cluster0.bqzgjh7.mongodb.net/?retryWrites=true&w=majority"
+MONGO_PASSWORD = os.environ.get("MONGO_PASSWORD")
+
+URI = "mongodb+srv://pierredelagrandrive:"+MONGO_PASSWORD+"@cluster0.bqzgjh7.mongodb.net/?retryWrites=true&w=majority"
 CLIENT = MongoClient(URI, server_api=ServerApi('1'))
 DB = CLIENT.pdfcollection
 documents_collection = DB.documents
