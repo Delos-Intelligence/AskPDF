@@ -1,7 +1,0 @@
-fastapi
-chardet
-PyPDF2
-pymongo
-tiktoken
-openai
-langchain
