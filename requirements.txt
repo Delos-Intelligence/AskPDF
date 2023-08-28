@@ -1,3 +1,7 @@
 fastapi
 langchain
 openai
+chardet
+PyPDF2
+pymongo
+tiktoken

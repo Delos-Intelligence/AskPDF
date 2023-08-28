@@ -4,7 +4,7 @@ from mytypes import FileInfo
 import connectors.mongo_connector as mongo_connector
 import connectors.llm_connector as llm_connector
 
-LOCAL = "/Users/pierredgr/Documents/Informatique/GitHub/Delos_platform/delos_platform/local_storage"
+LOCAL = "."
 FILE_PATH = LOCAL+'/received_file.pdf'
 
 VECTORBASE_TABLE = {} 
