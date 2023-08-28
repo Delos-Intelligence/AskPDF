@@ -2,7 +2,7 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
-from .secrets_manager import MONGO_SECRETS
+import os
 
 MONGO_PASSWORD = os.environ.get("MONGO_PASSWORD")
 
