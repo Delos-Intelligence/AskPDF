@@ -55,7 +55,7 @@ def ask():
         "chat_buffer" : chat_buffer,
     }
     print(question_info)
-    response = requests.post(REMOTE_ASK_URL, data=json.dumps(question_info), headers={'Content-Type': 'application/json'}, stream=True)
+    response = requests.post(ASK_URL, data=json.dumps(question_info), headers={'Content-Type': 'application/json'}, stream=True)
 
     # Lisez la réponse ligne par ligne
     for line in response.iter_lines():
