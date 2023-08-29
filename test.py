@@ -13,7 +13,7 @@ CHUNK_SIZE = 4096  # 4KB, vous pouvez ajuster cette taille selon vos besoins
 REMOTE_URL = 'https://delosaskpdf-b71e417edc56.herokuapp.com/upload/'
 REMOTE_ASK_URL = 'https://delosaskpdf-b71e417edc56.herokuapp.com/ask/'
 
-PATH = "/Users/pierredgr/Documents/Business/Actuels/Delos/NUKEMA/2023-S-0020_CCTP.pdf" # Remplacer par un fichier test
+PATH = "" # Remplacer par un fichier test
 
 def send_chunks(file_path : str = PATH):
     print("Beginning sending the doc")
