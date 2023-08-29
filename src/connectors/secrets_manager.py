@@ -1,5 +1,5 @@
 OPENAI_SECRETS = {
-    "API_KEY" : "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"
+    "API_KEY" : "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"
 }
     
 MONGODB_SECRETS = {
