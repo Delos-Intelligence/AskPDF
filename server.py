@@ -36,7 +36,9 @@ async def upload(chunk_info: ChunkInfo):
     RECEIVED_CHUNKS[file_info.title] += [{"encoded_content":encoded_content, "chunk_number":chunk_info.chunk_number}]
 
     # Check if all chunks are received
+    print('ho')
     if len(RECEIVED_CHUNKS[file_info.title]) == chunk_info.total_chunks:
+        print('all document received')
         create_file(file_info)
         del RECEIVED_CHUNKS[file_info.title]
         return {"status": "received_all_chunks"}
