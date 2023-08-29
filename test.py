@@ -41,6 +41,7 @@ def send_chunks(file_path : str = PATH):
             }
             response = requests.post(REMOTE_URL, data=json.dumps(chunk_info), headers={'Content-Type': 'application/json'})
 
+            time.sleep(10)
             if response.status_code != 200:
                 print("Erreur lors de l'envoi d'un chunk!")
                 return
