@@ -2,6 +2,7 @@
 import time
 import base64
 import os
+import sys
 import json
 import asyncio
 from fastapi import FastAPI, HTTPException, UploadFile, Form
@@ -19,8 +20,9 @@ mongo_connector.ping_mongodb()
 LOCAL = "."
 FILE_PATH = LOCAL+'/received_file.pdf'
 
-#VECTORBASE_TABLE = initialize_vectorbase_table()
-VECTORBASE_TABLE = {}
+VECTORBASE_TABLE = initialize_vectorbase_table()
+#VECTORBASE_TABLE = {}
+print(sys.getsizeof(VECTORBASE_TABLE))
 RECEIVED_CHUNKS = {}
 
 @app.post("/upload/")
