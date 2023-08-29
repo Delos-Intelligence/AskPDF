@@ -48,14 +48,14 @@ def send_chunks(file_path : str = PATH):
 
 def ask():
     question = input("Entrez votre question : ")
-    chat_buffer = ["user : what is your name ?", "system : my name is Sydney"]
+    chat_buffer = ""
     question_info = {
         "user_id" : "1345",
         "question" : question,
         "chat_buffer" : chat_buffer,
     }
     print(question_info)
-    response = requests.post(ASK_URL, data=json.dumps(question_info), headers={'Content-Type': 'application/json'}, stream=True)
+    response = requests.post(REMOTE_ASK_URL, data=json.dumps(question_info), headers={'Content-Type': 'application/json'}, stream=True)
 
     # Lisez la réponse ligne par ligne
     for line in response.iter_lines():
@@ -66,4 +66,4 @@ def ask():
 
     return
 
-send_chunks()
+ask()
