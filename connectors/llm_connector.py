@@ -46,14 +46,12 @@ def ask_request(question, chat_buffer, vectorbase):
     )
     
     answer = ''
-    yield "beginning of the stream"
     for event in response:
         event_text = event['choices'][0]['delta'] # EVENT DELTA RESPONSE
         answer = event_text.get('content', '') # RETRIEVE CONTENT
         print(answer, end='')
         sys.stdout.flush()
         yield (answer+'\n').encode('utf-8')
-    yield "end of the stream"
 
     
 
