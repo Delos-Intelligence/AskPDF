@@ -19,7 +19,8 @@ mongo_connector.ping_mongodb()
 LOCAL = "."
 FILE_PATH = LOCAL+'/received_file.pdf'
 
-VECTORBASE_TABLE = initialize_vectorbase_table()
+#VECTORBASE_TABLE = initialize_vectorbase_table()
+VECTORBASE_TABLE = {}
 RECEIVED_CHUNKS = {}
 
 @app.post("/upload/")
