@@ -48,14 +48,14 @@ def send_chunks(file_path : str = PATH):
 
 def ask():
     question = input("Entrez votre question : ")
-    chat_buffer = ""
+    chat_buffer = str([{"user": "de quoi parle ce document ? ", "system": "Ce document parle d'un marché de nettoyage pour le parking Brauhauban de la ville de Tarbes. Il décrit les différentes prestations de nettoyage demandées, telles que le nettoyage des bureaux, des sanitaires, des vitres, des surfaces de roulement du parking, etc. Le document précise également les responsabilités du prestataire en termes de stockage et de traitement des déchets, ainsi que les formalités administratives à suivre après chaque intervention. Il mentionne également les moyens nécessaires pour assurer les prestations, tels que le personnel et le matériel utilisé. Enfin, le document énonce les clauses techniques particulières et décrit les caractéristiques du parking et des espaces à nettoyer."}])
     question_info = {
         "user_id" : "1345",
         "question" : question,
         "chat_buffer" : chat_buffer,
     }
     print(question_info)
-    response = requests.post(ASK_URL, data=json.dumps(question_info), headers={'Content-Type': 'application/json'}, stream=True)
+    response = requests.post(REMOTE_ASK_URL, data=json.dumps(question_info), headers={'Content-Type': 'application/json'}, stream=True)
 
     # Lisez la réponse ligne par ligne
     for line in response.iter_lines():
