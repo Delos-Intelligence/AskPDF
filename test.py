@@ -9,8 +9,8 @@ CHUNK_SIZE = 4096  # 4KB, vous pouvez ajuster cette taille selon vos besoins
 URL = 'http://localhost:8000/upload/'
 ASK_URL = 'http://localhost:8000/ask/'
 
-REMOTE_URL = 'https://delosaskpdf-b71e417edc56.herokuapp.com/upload'
-REMOTE_ASK_URL = 'https://delosaskpdf-b71e417edc56.herokuapp.com/ask'
+REMOTE_URL = 'https://delosaskpdf-b71e417edc56.herokuapp.com/upload/'
+REMOTE_ASK_URL = 'https://delosaskpdf-b71e417edc56.herokuapp.com/ask/'
 
 PATH = "/Users/pierredgr/Documents/Business/Actuels/Delos/NUKEMA/CCTP.pdf" # Remplacer par un fichier test
 
@@ -41,7 +41,6 @@ def send_chunks(file_path : str = PATH):
             }
             response = requests.post(REMOTE_URL, data=json.dumps(chunk_info), headers={'Content-Type': 'application/json'})
 
-            time.sleep(10)
             if response.status_code != 200:
                 print("Erreur lors de l'envoi d'un chunk!")
                 return
