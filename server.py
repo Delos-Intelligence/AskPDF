@@ -7,6 +7,7 @@ import json
 import asyncio
 from fastapi import FastAPI, HTTPException, UploadFile, Form
 from fastapi.responses import StreamingResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 import connectors.mongo_connector as mongo_connector
 import connectors.llm_connector as llm_connector
@@ -14,6 +15,19 @@ from mytypes import FileInfo, ChunkInfo, Ask_request
 from initializer import initialize_vectorbase_table
 
 app = FastAPI()
+
+origins = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 mongo_connector.ping_mongodb()
 
@@ -31,7 +45,8 @@ async def upload(chunk_info: ChunkInfo):
     encoded_content = chunk_info.encoded_content
 
     file_info = chunk_info.file_info
-    if file_info.title not in RECEIVED_CHUNKS:
+
+    if file_info.title not in RECEIVED_CHUNKS or chunk_info.chunk_number == 0:
         RECEIVED_CHUNKS[file_info.title] = []
         mongo_connector.delete_previous_documents(file_info.user_id)
 
