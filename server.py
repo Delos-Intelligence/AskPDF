@@ -42,8 +42,10 @@ RECEIVED_CHUNKS = {}
 @app.post("/upload/")
 async def upload(chunk_info: ChunkInfo):
     global RECEIVED_CHUNKS
+
     encoded_content = chunk_info.encoded_content
 
+    print(encoded_content)
     file_info = chunk_info.file_info
 
     if file_info.title not in RECEIVED_CHUNKS or chunk_info.chunk_number == 0:
