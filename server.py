@@ -47,7 +47,6 @@ async def upload(chunk_info: ChunkInfo):
 
     file_info = chunk_info.file_info
 
-    print(RECEIVED_CHUNKS)
     print("chunk_number :")
     print(chunk_info.chunk_number)
     print("total_chunk")
