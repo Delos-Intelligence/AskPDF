@@ -16,11 +16,7 @@ from initializer import initialize_vectorbase_table
 
 app = FastAPI()
 
-origins = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://89.117.169.196:5000"
-]
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
