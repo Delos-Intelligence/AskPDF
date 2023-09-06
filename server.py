@@ -53,7 +53,7 @@ async def upload(chunk_info: ChunkInfo):
 
     if file_info.uuid not in RECEIVED_CHUNKS or len(RECEIVED_CHUNKS[file_info.uuid]) != chunk_info.total_chunks:
         print('new document')
-        RECEIVED_CHUNKS[file_info.uuid] = ['' for i in range(chunk_info.total_chunks)]
+        RECEIVED_CHUNKS[file_info.uuid] = []
 
     if chunk_info.chunk_number == 0:
         mongo_connector.delete_previous_documents(file_info.user_id)
@@ -62,7 +62,7 @@ async def upload(chunk_info: ChunkInfo):
 
     print(len(RECEIVED_CHUNKS[file_info.uuid]))
     # Check if all chunks are received
-    if len(RECEIVED_CHUNKS[file_info.uuid]) == chunk_info.total_chunks:
+    if len([item for item in RECEIVED_CHUNKS[file_info.uuid] if item != '']) == chunk_info.total_chunks:
         print('all document received')
         create_file(file_info)
         del RECEIVED_CHUNKS[file_info.uuid]
