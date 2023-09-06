@@ -40,7 +40,6 @@ RECEIVED_CHUNKS = {}
 async def upload(chunk_info: ChunkInfo):
     global RECEIVED_CHUNKS
 
-    print("upload")
     encoded_content = chunk_info.encoded_content
 
     file_info = chunk_info.file_info
@@ -50,15 +49,15 @@ async def upload(chunk_info: ChunkInfo):
     print("total_chunk")
     print(chunk_info.total_chunks)
 
-    if file_info.title not in RECEIVED_CHUNKS:
-        RECEIVED_CHUNKS[file_info.title] = []
+    if file_info.uuid not in RECEIVED_CHUNKS:
+        RECEIVED_CHUNKS[file_info.uuid] = []
 
     if chunk_info.chunk_number == 0:
         mongo_connector.delete_previous_documents(file_info.user_id)
 
-    RECEIVED_CHUNKS[file_info.title] += [{"encoded_content":encoded_content, "chunk_number":chunk_info.chunk_number}]
+    RECEIVED_CHUNKS[file_info.uuid] += [{"encoded_content":encoded_content, "chunk_number":chunk_info.chunk_number}]
 
-    print(len(RECEIVED_CHUNKS[file_info.title]))
+    print(len(RECEIVED_CHUNKS[file_info.uuid]))
     # Check if all chunks are received
     if len(RECEIVED_CHUNKS[file_info.title]) == chunk_info.total_chunks:
         print('all document received')

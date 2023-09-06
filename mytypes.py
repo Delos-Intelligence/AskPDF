@@ -2,6 +2,7 @@ from pydantic import BaseModel
 
 class FileInfo(BaseModel):
     user_id: str
+    uuid: str
     title: str
     type: str
     size: int
