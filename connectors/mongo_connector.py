@@ -40,6 +40,7 @@ def store_file_in_database(file_info, tempfile):
         document_data = {
             "user_id": file_info.user_id,
             "title": file_info.title,
+            "uuid": file_info.uuid,
             "type": file_info.type,
             "size":file_info.size,  # Vous pouvez remplacer ceci par un titre approprié
             "content": encoded_file

@@ -18,7 +18,8 @@ def initialize_vectorbase_table():
             user_id = document['user_id'],
             title = document['title'],
             type = document['type'],
-            size = document['size']
+            size = document['size'],
+            uuid= document['uuid']
         )
         binary_content = document['content']
         TEMPFILE_PATH = os.path.join(LOCAL, file_info.title + file_info.type)
