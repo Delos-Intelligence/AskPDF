@@ -32,8 +32,6 @@ LOCAL = "."
 FILE_PATH = LOCAL+'/received_file.pdf'
 
 VECTORBASE_TABLE = initialize_vectorbase_table()
-#VECTORBASE_TABLE = {}
-print(sys.getsizeof(VECTORBASE_TABLE))
 RECEIVED_CHUNKS = {}
 
 @app.post("/upload/")
@@ -48,6 +46,8 @@ async def upload(chunk_info: ChunkInfo):
     print(chunk_info.chunk_number)
     print("total_chunk")
     print(chunk_info.total_chunks)
+    print("uuid")
+    print(file_info.uuid)
 
     if file_info.uuid not in RECEIVED_CHUNKS:
         RECEIVED_CHUNKS[file_info.uuid] = []
@@ -59,7 +59,7 @@ async def upload(chunk_info: ChunkInfo):
 
     print(len(RECEIVED_CHUNKS[file_info.uuid]))
     # Check if all chunks are received
-    if len(RECEIVED_CHUNKS[file_info.title]) == chunk_info.total_chunks:
+    if len(RECEIVED_CHUNKS[file_info.uuid]) == chunk_info.total_chunks:
         print('all document received')
         create_file(file_info)
         del RECEIVED_CHUNKS[file_info.title]
