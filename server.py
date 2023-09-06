@@ -40,6 +40,7 @@ RECEIVED_CHUNKS = {}
 async def upload(chunk_info: ChunkInfo):
     global RECEIVED_CHUNKS
 
+    print("upload")
     encoded_content = chunk_info.encoded_content
 
     file_info = chunk_info.file_info
