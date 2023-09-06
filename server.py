@@ -46,7 +46,6 @@ async def upload(chunk_info: ChunkInfo):
     print(chunk_info.chunk_number)
     print("total_chunk :")
     print(chunk_info.total_chunks)
-    print("uuid")
 
     if file_info.uuid not in RECEIVED_CHUNKS or len(RECEIVED_CHUNKS[file_info.uuid]) != chunk_info.total_chunks:
         print('new document')
@@ -57,6 +56,7 @@ async def upload(chunk_info: ChunkInfo):
 
     RECEIVED_CHUNKS[file_info.uuid][chunk_info.chunk_number] = encoded_content
 
+    print(RECEIVED_CHUNKS[file_info.uuid])
     print('non empty chunks :')
     print(len([item for item in RECEIVED_CHUNKS[file_info.uuid] if item != '']))
     # Check if all chunks are received
