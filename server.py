@@ -49,6 +49,10 @@ async def upload(chunk_info: ChunkInfo):
     print(chunk_info.chunk_number)
     print("total_chunk")
     print(chunk_info.total_chunks)
+
+    if file_info.title not in RECEIVED_CHUNKS:
+        RECEIVED_CHUNKS[file_info.title] = []
+
     if chunk_info.chunk_number == 0:
         mongo_connector.delete_previous_documents(file_info.user_id)
 
