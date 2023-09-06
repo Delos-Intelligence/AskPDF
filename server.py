@@ -48,14 +48,17 @@ async def upload(chunk_info: ChunkInfo):
     print(chunk_info.total_chunks)
     print("uuid")
     print(file_info.uuid)
+    print("encoded_content type")
+    print(type(encoded_content))
 
-    if file_info.uuid not in RECEIVED_CHUNKS or len(RECEIVED_CHUNKS[file_info.uuid]) > 20:
-        RECEIVED_CHUNKS[file_info.uuid] = []
+    if file_info.uuid not in RECEIVED_CHUNKS or len(RECEIVED_CHUNKS[file_info.uuid]) != chunk_info.total_chunks:
+        print('new document')
+        RECEIVED_CHUNKS[file_info.uuid] = ['' for i in range(chunk_info.total_chunks)]
 
     if chunk_info.chunk_number == 0:
         mongo_connector.delete_previous_documents(file_info.user_id)
 
-    RECEIVED_CHUNKS[file_info.uuid] += [{"encoded_content":encoded_content, "chunk_number":chunk_info.chunk_number}]
+    RECEIVED_CHUNKS[file_info.uuid][chunk_info.chunk_number] = encoded_content
 
     print(len(RECEIVED_CHUNKS[file_info.uuid]))
     # Check if all chunks are received
@@ -76,12 +79,9 @@ def create_file(file_info : FileInfo):
         os.remove(TEMPFILE_PATH)
     else:
         print(f"Le fichier {TEMPFILE_PATH} n'existe pas.")
-
-    sorted_chunks = sorted(RECEIVED_CHUNKS[file_info.title], key=lambda x: int(x['chunk_number']))
     
     with open(TEMPFILE_PATH, 'wb') as f:
-        for chunk_info in sorted_chunks:
-            encoded_content = chunk_info['encoded_content']
+        for encoded_content in RECEIVED_CHUNKS[file_info.uuid]:
             binary_content = base64.b64decode(encoded_content.encode('utf_8'))
             f.write(binary_content)
 
