@@ -60,7 +60,7 @@ async def upload(chunk_info: ChunkInfo):
 
     print('empty indices :')
     print(empty_indices)
-    if len(empty_indices) == chunk_info.total_chunks:
+    if len(empty_indices) == 0:
         print('all document received')
         create_file(file_info)
         del RECEIVED_CHUNKS[file_info.uuid]
