@@ -48,12 +48,12 @@ async def upload(chunk_info: ChunkInfo):
     print(chunk_info.chunk_number)
     print("total_chunk")
     print(chunk_info.total_chunks)
-    if file_info.title not in RECEIVED_CHUNKS or chunk_info.chunk_number == 0:
-        RECEIVED_CHUNKS[file_info.title] = []
+    if chunk_info.chunk_number == 0:
         mongo_connector.delete_previous_documents(file_info.user_id)
 
     RECEIVED_CHUNKS[file_info.title] += [{"encoded_content":encoded_content, "chunk_number":chunk_info.chunk_number}]
 
+    print(len(RECEIVED_CHUNKS[file_info.title]))
     # Check if all chunks are received
     if len(RECEIVED_CHUNKS[file_info.title]) == chunk_info.total_chunks:
         print('all document received')
@@ -66,7 +66,7 @@ def create_file(file_info : FileInfo):
     global VECTORBASE_TABLE
     global RECEIVED_CHUNKS
 
-    TEMPFILE_PATH = os.path.join(LOCAL, file_info.title + file_info.type)
+    TEMPFILE_PATH = os.path.join(LOCAL, file_info.title)
     if os.path.exists(TEMPFILE_PATH):
         print(f"Le fichier {TEMPFILE_PATH} existe déjà, il va être supprimé.")
         os.remove(TEMPFILE_PATH)
