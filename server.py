@@ -49,7 +49,7 @@ async def upload(chunk_info: ChunkInfo):
     print("uuid")
     print(file_info.uuid)
 
-    if file_info.uuid not in RECEIVED_CHUNKS:
+    if file_info.uuid not in RECEIVED_CHUNKS or len(RECEIVED_CHUNKS[file_info.uuid]) > 20:
         RECEIVED_CHUNKS[file_info.uuid] = []
 
     if chunk_info.chunk_number == 0:
@@ -62,7 +62,7 @@ async def upload(chunk_info: ChunkInfo):
     if len(RECEIVED_CHUNKS[file_info.uuid]) == chunk_info.total_chunks:
         print('all document received')
         create_file(file_info)
-        del RECEIVED_CHUNKS[file_info.title]
+        del RECEIVED_CHUNKS[file_info.uuid]
         return {"status": "received_all_chunks"}
     return {"status": "received_chunk"}    
 
